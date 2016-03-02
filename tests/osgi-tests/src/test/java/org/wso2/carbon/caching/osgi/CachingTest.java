@@ -37,14 +37,12 @@ import static org.testng.Assert.assertNull;
 @Listeners(PaxExam.class)
 @ExamReactorStrategy(PerClass.class)
 public class CachingTest {
-    private Duration cacheExpiry = new Duration(TimeUnit.MINUTES, 15);
-
-    @Inject
-    private CarbonCachingService cachingService;
-
     private static final String CACHE_NAME = "foo";
     private static final String KEY = "k";
     private static final String VALUE = "v";
+    private Duration cacheExpiry = new Duration(TimeUnit.MINUTES, 15);
+    @Inject
+    private CarbonCachingService cachingService;
 
     @Test
     public void testCachePut() throws Exception {

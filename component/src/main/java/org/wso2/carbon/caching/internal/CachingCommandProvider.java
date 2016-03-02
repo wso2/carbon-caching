@@ -137,7 +137,8 @@ public class CachingCommandProvider implements CommandProvider {
         config.setStoreByValue(true)
                 .setTypes(String.class, String.class)
                 .setExpiryPolicyFactory(AccessedExpiryPolicy.factoryOf(cacheExpiry))
-                .setStatisticsEnabled(false);
+                .setStatisticsEnabled(true)
+                .setManagementEnabled(true);
 
         //create the cache
         return cacheManager.createCache(name, config);

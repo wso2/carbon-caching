@@ -15,6 +15,8 @@
  */
 package org.wso2.carbon.caching.internal;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.wso2.carbon.caching.spi.CarbonCachingProvider;
 
 import java.lang.ref.WeakReference;
@@ -24,8 +26,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.cache.Cache;
 import javax.cache.CacheException;
 import javax.cache.CacheManager;
@@ -38,7 +38,7 @@ import javax.cache.spi.CachingProvider;
  */
 public class CarbonCacheManager implements CacheManager {
 
-    private static final Logger LOGGER = Logger.getLogger("javax.cache");
+    private static final Logger log = LoggerFactory.getLogger("javax.cache");
     private final HashMap<String, CarbonCache<?, ?>> caches = new HashMap<String, CarbonCache<?, ?>>();
 
     private final CarbonCachingProvider cachingProvider;
@@ -105,7 +105,7 @@ public class CarbonCacheManager implements CacheManager {
                 try {
                     cache.close();
                 } catch (Exception e) {
-                    getLogger().log(Level.WARNING, "Error stopping cache: " + cache, e);
+                    log.warn("Error stopping cache: " + cache, e);
                 }
             }
         }
@@ -164,9 +164,8 @@ public class CarbonCacheManager implements CacheManager {
             CarbonCache<?, ?> cache = caches.get(cacheName);
 
             if (cache == null) {
-                cache = new CarbonCache(this, cacheName, getClassLoader(), configuration);
+                cache = new CarbonCache<K, V>(this, cacheName, getClassLoader(), configuration);
                 caches.put(cache.getName(), cache);
-
                 return (Cache<K, V>) cache;
             } else {
                 throw new CacheException("A cache named " + cacheName + " already exists.");
@@ -333,14 +332,5 @@ public class CarbonCacheManager implements CacheManager {
         }
 
         throw new IllegalArgumentException("Unwapping to " + cls + " is not a supported by this implementation");
-    }
-
-    /**
-     * Obtain the logger.
-     *
-     * @return the logger.
-     */
-    Logger getLogger() {
-        return LOGGER;
     }
 }

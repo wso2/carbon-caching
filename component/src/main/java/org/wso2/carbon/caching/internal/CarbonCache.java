@@ -15,6 +15,7 @@
  */
 package org.wso2.carbon.caching.internal;
 
+import org.slf4j.LoggerFactory;
 import org.wso2.carbon.caching.internal.event.CarbonCacheEntryEvent;
 import org.wso2.carbon.caching.internal.event.CarbonCacheEntryListenerRegistration;
 import org.wso2.carbon.caching.internal.event.CarbonCacheEventDispatcher;
@@ -38,8 +39,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.cache.Cache;
 import javax.cache.CacheException;
 import javax.cache.CacheManager;
@@ -86,6 +85,7 @@ import static org.wso2.carbon.caching.internal.management.MBeanServerRegistratio
  * @param <V> the type of mapped values*
  */
 public final class CarbonCache<K, V> implements Cache<K, V> {
+    private static final org.slf4j.Logger log = LoggerFactory.getLogger(CarbonCache.class);
 
     /**
      * The name of the {@link Cache} as used with in the scope of the
@@ -213,6 +213,7 @@ public final class CarbonCache<K, V> implements Cache<K, V> {
 
         cacheMXBean = new CarbonCacheMXBean<K, V>(this);
         statistics = new CarbonCacheStatisticsMXBean(this);
+
         //It's important that we set the status BEFORE we let management, statistics and listeners know about the cache.
         isClosed = false;
 
@@ -304,8 +305,7 @@ public final class CarbonCache<K, V> implements Cache<K, V> {
                 try {
                     ((Closeable) cacheLoader).close();
                 } catch (IOException e) {
-                    Logger.getLogger(this.getName()).log(Level.WARNING, "Problem " +
-                            "closing CacheLoader " + cacheLoader.getClass(), e);
+                    log.warn("Problem closing CacheLoader " + cacheLoader.getClass(), e);
                 }
             }
 
@@ -314,8 +314,7 @@ public final class CarbonCache<K, V> implements Cache<K, V> {
                 try {
                     ((Closeable) cacheWriter).close();
                 } catch (IOException e) {
-                    Logger.getLogger(this.getName()).log(Level.WARNING, "Problem " +
-                            "closing CacheWriter " + cacheWriter.getClass(), e);
+                    log.warn("Problem closing CacheWriter " + cacheWriter.getClass(), e);
                 }
             }
 
@@ -324,8 +323,7 @@ public final class CarbonCache<K, V> implements Cache<K, V> {
                 try {
                     ((Closeable) expiryPolicy).close();
                 } catch (IOException e) {
-                    Logger.getLogger(this.getName()).log(Level.WARNING, "Problem " +
-                            "closing ExpiryPolicy " + cacheLoader.getClass(), e);
+                    log.warn("Problem closing ExpiryPolicy " + cacheLoader.getClass(), e);
                 }
             }
 
@@ -335,8 +333,7 @@ public final class CarbonCache<K, V> implements Cache<K, V> {
                     try {
                         ((Closeable) registration).close();
                     } catch (IOException e) {
-                        Logger.getLogger(this.getName()).log(Level.WARNING, "Problem " +
-                                "closing listener " + cacheLoader.getClass(), e);
+                        log.warn("Problem closing listener " + cacheLoader.getClass(), e);
                     }
                 }
             }

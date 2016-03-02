@@ -17,11 +17,11 @@ package org.wso2.carbon.caching.internal.management;
 
 import org.wso2.carbon.caching.internal.CarbonCache;
 
+import java.lang.management.ManagementFactory;
 import java.util.Set;
 import javax.cache.Cache;
 import javax.cache.CacheException;
 import javax.management.MBeanServer;
-import javax.management.MBeanServerFactory;
 import javax.management.MalformedObjectNameException;
 import javax.management.ObjectName;
 
@@ -32,7 +32,7 @@ import javax.management.ObjectName;
 public final class MBeanServerRegistrationUtility {
 
     //ensure everything gets put in one MBeanServer
-    private static MBeanServer mBeanServer = MBeanServerFactory.createMBeanServer();
+    private static MBeanServer mBeanServer = ManagementFactory.getPlatformMBeanServer();
 
     private MBeanServerRegistrationUtility() {
         //prevent construction

@@ -17,7 +17,6 @@ package org.wso2.carbon.caching.internal.management;
 
 import org.wso2.carbon.caching.internal.CarbonCache;
 
-import java.io.Serializable;
 import java.util.concurrent.atomic.AtomicLong;
 import javax.cache.Cache;
 import javax.cache.management.CacheStatisticsMXBean;

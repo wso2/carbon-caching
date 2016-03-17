@@ -39,6 +39,7 @@ import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import javax.cache.Cache;
 import javax.cache.CacheException;
@@ -253,8 +254,8 @@ public final class CarbonCache<K, V> implements Cache<K, V> {
      *
      * @param task the {@link Runnable} to be performed
      */
-    protected void submit(Runnable task) {
-        executorService.submit(task);
+    protected Future submit(Runnable task) {
+        return executorService.submit(task);
     }
 
     /**
@@ -330,7 +331,7 @@ public final class CarbonCache<K, V> implements Cache<K, V> {
             for (CarbonCacheEntryListenerRegistration<K, V> registration : listenerRegistrations) {
                 if (registration.getCacheEntryListener() instanceof Closeable) {
                     try {
-                        ((Closeable) registration).close();
+                        ((Closeable) registration.getCacheEntryListener()).close();
                     } catch (IOException e) {
                         log.warn("Problem closing listener " + cacheLoader.getClass(), e);
                     }

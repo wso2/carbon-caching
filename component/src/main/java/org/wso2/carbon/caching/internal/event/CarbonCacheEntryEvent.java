@@ -26,6 +26,7 @@ import javax.cache.event.EventType;
  * @param <V> the type of cached values
  */
 public class CarbonCacheEntryEvent<K, V> extends CacheEntryEvent<K, V> {
+    private static final long serialVersionUID = -3129026929246835839L;
 
     private K key;
     private V value;

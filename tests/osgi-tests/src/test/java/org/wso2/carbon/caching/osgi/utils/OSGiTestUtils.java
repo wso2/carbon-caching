@@ -23,9 +23,7 @@ import org.wso2.carbon.osgi.test.util.OSGiTestConfigurationUtils;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
 

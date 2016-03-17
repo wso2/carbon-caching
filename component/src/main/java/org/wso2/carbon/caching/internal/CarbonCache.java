@@ -15,6 +15,7 @@
  */
 package org.wso2.carbon.caching.internal;
 
+
 import org.slf4j.LoggerFactory;
 import org.wso2.carbon.caching.internal.event.CarbonCacheEntryEvent;
 import org.wso2.carbon.caching.internal.event.CarbonCacheEntryListenerRegistration;
@@ -68,8 +69,6 @@ import static javax.cache.event.EventType.CREATED;
 import static javax.cache.event.EventType.EXPIRED;
 import static javax.cache.event.EventType.REMOVED;
 import static javax.cache.event.EventType.UPDATED;
-import static org.wso2.carbon.caching.internal.management.MBeanServerRegistrationUtility.ObjectNameType.Configuration;
-import static org.wso2.carbon.caching.internal.management.MBeanServerRegistrationUtility.ObjectNameType.Statistics;
 
 /**
  * The reference implementation for JSR107.
@@ -125,7 +124,7 @@ public final class CarbonCache<K, V> implements Cache<K, V> {
      */
     private final CopyOnWriteArrayList<CarbonCacheEntryListenerRegistration<K,
             V>> listenerRegistrations;
-    private final CarbonCacheMXBean cacheMXBean;
+    private final CarbonCacheMXBean<K, V> cacheMXBean;
     private final CarbonCacheStatisticsMXBean statistics;
     /**
      * A {@link LockManager} to control concurrent access to cache entries.
@@ -176,10 +175,10 @@ public final class CarbonCache<K, V> implements Cache<K, V> {
         //as we don't know if the provided configuration is mutable
         if (configuration instanceof CompleteConfiguration) {
             //support use of CompleteConfiguration
-            this.configuration = new MutableConfiguration<K, V>((MutableConfiguration) configuration);
+            this.configuration = new MutableConfiguration<K, V>((MutableConfiguration<K, V>) configuration);
         } else {
             //support use of Basic Configuration
-            MutableConfiguration mutableConfiguration = new MutableConfiguration();
+            MutableConfiguration<K, V> mutableConfiguration = new MutableConfiguration<K, V>();
             mutableConfiguration.setStoreByValue(configuration.isStoreByValue());
             mutableConfiguration.setTypes(configuration.getKeyType(), configuration.getValueType());
             this.configuration = new MutableConfiguration<K, V>(mutableConfiguration);
@@ -328,7 +327,7 @@ public final class CarbonCache<K, V> implements Cache<K, V> {
             }
 
             //close the configured CacheEntryListeners
-            for (CarbonCacheEntryListenerRegistration registration : listenerRegistrations) {
+            for (CarbonCacheEntryListenerRegistration<K, V> registration : listenerRegistrations) {
                 if (registration.getCacheEntryListener() instanceof Closeable) {
                     try {
                         ((Closeable) registration).close();
@@ -514,7 +513,7 @@ public final class CarbonCache<K, V> implements Cache<K, V> {
         int putCount = 0;
         ensureOpen();
         if (key == null) {
-            throw new NullPointerException("null value specified for key " + key);
+            throw new NullPointerException("null value specified for key");
         }
         if (value == null) {
             throw new NullPointerException("null value specified for key " + key);
@@ -567,7 +566,8 @@ public final class CarbonCache<K, V> implements Cache<K, V> {
                 } else {
                     entries.put(internalKey, cachedValue);
                     putCount++;
-                    dispatcher.addEvent(CacheEntryCreatedListener.class, new CarbonCacheEntryEvent<K, V>(this, key, value, EventType.CREATED));
+                    dispatcher.addEvent(CacheEntryCreatedListener.class,
+                            new CarbonCacheEntryEvent<K, V>(this, key, value, EventType.CREATED));
                 }
 
             } else {
@@ -607,8 +607,8 @@ public final class CarbonCache<K, V> implements Cache<K, V> {
     }
 
     private void checkTypesAgainstConfiguredTypes(K key, V value) throws ClassCastException {
-        Class keyType = configuration.getKeyType();
-        Class valueType = configuration.getValueType();
+        Class<K> keyType = configuration.getKeyType();
+        Class<V> valueType = configuration.getValueType();
         if (Object.class != keyType) {
             //means type checks required
             if (!keyType.isAssignableFrom(key.getClass())) {
@@ -692,7 +692,8 @@ public final class CarbonCache<K, V> implements Cache<K, V> {
                 putCount++;
                 result = oldValue;
 
-                dispatcher.addEvent(CacheEntryUpdatedListener.class, new CarbonCacheEntryEvent<K, V>(this, key, value, oldValue, UPDATED));
+                dispatcher.addEvent(CacheEntryUpdatedListener.class,
+                        new CarbonCacheEntryEvent<K, V>(this, key, value, oldValue, UPDATED));
             }
 
             dispatcher.dispatch(listenerRegistrations);
@@ -1196,7 +1197,6 @@ public final class CarbonCache<K, V> implements Cache<K, V> {
                     result = true;
                 } else {
                     try {
-                        CarbonCacheEntry<K, V> entry = new CarbonCacheEntry<K, V>(key, oldValue);
                         Duration duration = expiryPolicy.getExpiryForAccess();
                         if (duration != null) {
                             long expiryTime = duration.getAdjustedTime(now);
@@ -1607,8 +1607,9 @@ public final class CarbonCache<K, V> implements Cache<K, V> {
             //restart start as fetch finished
             start = statisticsEnabled() ? System.nanoTime() : 0;
 
-            EntryProcessorEntry<K, V> entry = new EntryProcessorEntry<>(valueConverter, key,
-                    cachedValue, now, dispatcher, configuration.isReadThrough() ? cacheLoader : null);
+            EntryProcessorEntry<K, V> entry =
+                    new EntryProcessorEntry<>(valueConverter, key,
+                            cachedValue, now, configuration.isReadThrough() ? cacheLoader : null);
             try {
                 result = entryProcessor.process(entry, arguments);
             } catch (CacheException e) {
@@ -1708,7 +1709,8 @@ public final class CarbonCache<K, V> implements Cache<K, V> {
                     oldValue = cachedValue == null ? null : valueConverter.fromInternal(cachedValue.get());
                     entries.remove(internalKey);
 
-                    dispatcher.addEvent(CacheEntryRemovedListener.class, new CarbonCacheEntryEvent<K, V>(this, key, oldValue, REMOVED));
+                    dispatcher.addEvent(CacheEntryRemovedListener.class,
+                            new CarbonCacheEntryEvent<K, V>(this, key, oldValue, REMOVED));
 
                     if (statisticsEnabled()) {
                         statistics.increaseCacheRemovals(1);
@@ -1795,9 +1797,11 @@ public final class CarbonCache<K, V> implements Cache<K, V> {
      */
     public void setStatisticsEnabled(boolean enabled) {
         if (enabled) {
-            MBeanServerRegistrationUtility.registerCacheObject(this, Statistics);
+            MBeanServerRegistrationUtility.registerCacheObject(this,
+                    MBeanServerRegistrationUtility.ObjectNameType.Statistics);
         } else {
-            MBeanServerRegistrationUtility.unregisterCacheObject(this, Statistics);
+            MBeanServerRegistrationUtility.
+                    unregisterCacheObject(this, MBeanServerRegistrationUtility.ObjectNameType.Statistics);
         }
         configuration.setStatisticsEnabled(enabled);
     }
@@ -1810,9 +1814,11 @@ public final class CarbonCache<K, V> implements Cache<K, V> {
      */
     public void setManagementEnabled(boolean enabled) {
         if (enabled) {
-            MBeanServerRegistrationUtility.registerCacheObject(this, Configuration);
+            MBeanServerRegistrationUtility.registerCacheObject(this,
+                    MBeanServerRegistrationUtility.ObjectNameType.Configuration);
         } else {
-            MBeanServerRegistrationUtility.unregisterCacheObject(this, Configuration);
+            MBeanServerRegistrationUtility.unregisterCacheObject(this,
+                    MBeanServerRegistrationUtility.ObjectNameType.Configuration);
         }
         configuration.setManagementEnabled(enabled);
     }
@@ -1972,8 +1978,6 @@ public final class CarbonCache<K, V> implements Cache<K, V> {
                 }
             } else {
                 value = valueConverter.fromInternal(cachedValue.getInternalValue(now));
-                CarbonCacheEntry<K, V> entry = new CarbonCacheEntry<K, V>(key, value);
-
                 try {
                     Duration duration = expiryPolicy.getExpiryForAccess();
                     if (duration != null) {

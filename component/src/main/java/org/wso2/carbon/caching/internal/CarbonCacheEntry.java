@@ -86,8 +86,12 @@ public class CarbonCacheEntry<K, V> implements Cache.Entry<K, V> {
      */
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || ((Object) this).getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || ((Object) this).getClass() != o.getClass()) {
+            return false;
+        }
 
         CarbonCacheEntry<?, ?> e2 = (CarbonCacheEntry<?, ?>) o;
 

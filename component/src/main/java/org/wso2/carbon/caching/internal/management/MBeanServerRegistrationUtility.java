@@ -104,7 +104,8 @@ public final class MBeanServerRegistrationUtility {
 
     /**
      * Creates an object name using the scheme
-     * "javax.cache:type=Cache&lt;Statistics|Configuration&gt;,CacheManager=&lt;cacheManagerName&gt;,name=&lt;cacheName&gt;"
+     * "javax.cache:type=Cache&lt;Statistics|Configuration&gt;,CacheManager=&lt;
+     * cacheManagerName&gt;,name=&lt;cacheName&gt;"
      */
     private static ObjectName calculateObjectName(Cache cache, ObjectNameType objectNameType) {
         String cacheManagerName = mbeanSafe(cache.getCacheManager().getURI().toString());

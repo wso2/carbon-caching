@@ -58,7 +58,8 @@ public class CarbonCacheManager implements CacheManager {
      * @param properties      the vendor specific Properties for the CacheManager
      * @throws NullPointerException if the URI and/or classLoader is null.
      */
-    public CarbonCacheManager(CarbonCachingProvider cachingProvider, URI uri, ClassLoader classLoader, Properties properties) {
+    public CarbonCacheManager(CarbonCachingProvider cachingProvider, URI uri,
+                              ClassLoader classLoader, Properties properties) {
         this.cachingProvider = cachingProvider;
 
         if (uri == null) {

@@ -17,15 +17,13 @@ package org.wso2.carbon.caching.internal.processor;
 
 import org.wso2.carbon.caching.internal.CarbonCachedValue;
 import org.wso2.carbon.caching.internal.InternalConverter;
-import org.wso2.carbon.caching.internal.event.CarbonCacheEventDispatcher;
 
 import javax.cache.integration.CacheLoader;
 import javax.cache.integration.CacheLoaderException;
-import javax.cache.processor.EntryProcessor;
 import javax.cache.processor.MutableEntry;
 
 /**
- * A {@link javax.cache.processor.MutableEntry} that is used by {@link EntryProcessor}s.
+ * A {@link javax.cache.processor.MutableEntry} that is used by {@link javax.cache.processor.EntryProcessor}s.
  *
  * @param <K> the type of keys maintained by this map
  * @param <V> the type of mapped values*
@@ -62,11 +60,6 @@ public class EntryProcessorEntry<K, V> implements MutableEntry<K, V> {
     private long now;
 
     /**
-     * The dispatcher to use for capturing events to eventually dispatch.
-     */
-    private CarbonCacheEventDispatcher<K, V> dispatcher;
-
-    /**
      * CacheLoader to call if getValue() would return null.
      */
     private CacheLoader<K, V> cacheLoader;
@@ -78,12 +71,10 @@ public class EntryProcessorEntry<K, V> implements MutableEntry<K, V> {
      * @param cachedValue the {@link CarbonCachedValue} of the {@link MutableEntry}
      *                    (may be <code>null</code>)
      * @param now         the current time
-     * @param dispatcher  the dispatch to capture events to dispatch
      * @param cacheLoader cacheLoader should be non-null only if configuration.isReadThrough is true.
      */
     public EntryProcessorEntry(InternalConverter<V> converter, K key,
                                CarbonCachedValue cachedValue, long now,
-                               CarbonCacheEventDispatcher<K, V> dispatcher,
                                CacheLoader<K, V> cacheLoader) {
         this.converter = converter;
         this.key = key;
@@ -91,7 +82,6 @@ public class EntryProcessorEntry<K, V> implements MutableEntry<K, V> {
         this.operation = MutableEntryOperation.NONE;
         this.value = null;
         this.now = now;
-        this.dispatcher = dispatcher;
         this.cacheLoader = cacheLoader;
     }
 
@@ -150,7 +140,8 @@ public class EntryProcessorEntry<K, V> implements MutableEntry<K, V> {
         if (value == null) {
             throw new NullPointerException();
         }
-        operation = cachedValue == null || cachedValue.isExpiredAt(now) ? MutableEntryOperation.CREATE : MutableEntryOperation.UPDATE;
+        operation = cachedValue == null || cachedValue.isExpiredAt(now) ?
+                MutableEntryOperation.CREATE : MutableEntryOperation.UPDATE;
         this.value = value;
     }
 
@@ -159,7 +150,8 @@ public class EntryProcessorEntry<K, V> implements MutableEntry<K, V> {
      */
     @Override
     public boolean exists() {
-        return (operation == MutableEntryOperation.NONE && cachedValue != null && !cachedValue.isExpiredAt(now)) || value != null;
+        return (operation == MutableEntryOperation.NONE && cachedValue != null && !cachedValue.isExpiredAt(now)) ||
+                value != null;
     }
 
     /**

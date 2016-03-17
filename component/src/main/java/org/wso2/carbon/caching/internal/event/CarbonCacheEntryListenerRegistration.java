@@ -16,7 +16,6 @@
 package org.wso2.carbon.caching.internal.event;
 
 import javax.cache.configuration.CacheEntryListenerConfiguration;
-import javax.cache.event.CacheEntryEvent;
 import javax.cache.event.CacheEntryEventFilter;
 import javax.cache.event.CacheEntryListener;
 
@@ -69,7 +68,7 @@ public class CarbonCacheEntryListenerRegistration<K, V> {
 
     /**
      * Determines if the old/previous value should to be supplied with the
-     * {@link CacheEntryEvent}s dispatched to the
+     * {@link javax.cache.event.CacheEntryEvent}s dispatched to the
      * {@link CacheEntryListener}.
      */
     public boolean isOldValueRequired() {
@@ -77,7 +76,7 @@ public class CarbonCacheEntryListenerRegistration<K, V> {
     }
 
     /**
-     * Determines if {@link CacheEntryEvent}s should be raised
+     * Determines if {@link javax.cache.event.CacheEntryEvent}s should be raised
      * synchronously.
      *
      * @return <code>true</code> if events should be raised synchronously

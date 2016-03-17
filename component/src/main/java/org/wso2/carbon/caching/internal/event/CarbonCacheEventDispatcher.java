@@ -17,7 +17,6 @@ package org.wso2.carbon.caching.internal.event;
 
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
-import javax.cache.configuration.CacheEntryListenerConfiguration;
 import javax.cache.event.CacheEntryCreatedListener;
 import javax.cache.event.CacheEntryEvent;
 import javax.cache.event.CacheEntryEventFilter;
@@ -88,7 +87,7 @@ public class CarbonCacheEventDispatcher<K, V> {
 
     /**
      * Dispatches the added events to the listeners defined by the specified
-     * {@link CacheEntryListenerConfiguration}s.
+     * {@link javax.cache.configuration.CacheEntryListenerConfiguration}s.
      *
      * @param registrations the {@link CarbonCacheEntryListenerRegistration}s defining
      *                      {@link CacheEntryListener}s to which to dispatch events

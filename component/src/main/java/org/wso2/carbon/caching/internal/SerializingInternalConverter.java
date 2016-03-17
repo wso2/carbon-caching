@@ -121,7 +121,8 @@ class SerializingInternalConverter<T> implements InternalConverter<T> {
                     bos.flush();
                     this.bytes = bos.toByteArray();
                 } catch (IOException e) {
-                    throw new IllegalArgumentException("Failed to serialize: " + value + " due to " + e.getMessage(), e);
+                    throw new IllegalArgumentException("Failed to serialize: " + value +
+                            " due to " + e.getMessage(), e);
                 } finally {
                     try {
                         bos.close();

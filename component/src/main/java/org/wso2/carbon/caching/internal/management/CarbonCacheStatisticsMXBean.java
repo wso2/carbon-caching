@@ -178,7 +178,7 @@ public class CarbonCacheStatisticsMXBean implements CacheStatisticsMXBean, Seria
         if (cacheGetTimeTakenNanos.longValue() == 0 || getCacheGets() == 0) {
             return 0;
         }
-        return (cacheGetTimeTakenNanos.longValue() / getCacheGets()) / NANOSECONDS_IN_A_MICROSECOND;
+        return ((float) cacheGetTimeTakenNanos.longValue() / getCacheGets()) / NANOSECONDS_IN_A_MICROSECOND;
     }
 
     /**
@@ -191,7 +191,7 @@ public class CarbonCacheStatisticsMXBean implements CacheStatisticsMXBean, Seria
         if (cachePutTimeTakenNanos.longValue() == 0 || getCacheGets() == 0) {
             return 0;
         }
-        return (cachePutTimeTakenNanos.longValue() / getCacheGets()) / NANOSECONDS_IN_A_MICROSECOND;
+        return ((float) cachePutTimeTakenNanos.longValue() / getCacheGets()) / NANOSECONDS_IN_A_MICROSECOND;
     }
 
     /**
@@ -204,7 +204,7 @@ public class CarbonCacheStatisticsMXBean implements CacheStatisticsMXBean, Seria
         if (cacheRemoveTimeTakenNanos.longValue() == 0 || getCacheGets() == 0) {
             return 0;
         }
-        return (cacheRemoveTimeTakenNanos.longValue() / getCacheGets()) / NANOSECONDS_IN_A_MICROSECOND;
+        return ((float) cacheRemoveTimeTakenNanos.longValue() / getCacheGets()) / NANOSECONDS_IN_A_MICROSECOND;
     }
 
     //package local incrementers

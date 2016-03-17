@@ -15,42 +15,38 @@
  */
 package org.wso2.carbon.caching.internal.processor;
 
-import org.wso2.carbon.caching.internal.CarbonCachedValue;
-
-import javax.cache.processor.MutableEntry;
-
 /**
- * The operation to perform on a {@link CarbonCachedValue} as a result of
- * actions performed on a {@link MutableEntry}.
+ * The operation to perform on a {@link org.wso2.carbon.caching.internal.CarbonCachedValue} as a result of
+ * actions performed on a {@link javax.cache.processor.MutableEntry}.
  */
 public enum MutableEntryOperation {
     /**
-     * Don't perform any operations on the {@link CarbonCachedValue}.
+     * Don't perform any operations on the {@link org.wso2.carbon.caching.internal.CarbonCachedValue}.
      */
     NONE,
 
     /**
-     * Access an existing {@link CarbonCachedValue}.
+     * Access an existing {@link org.wso2.carbon.caching.internal.CarbonCachedValue}.
      */
     ACCESS,
 
     /**
-     * Create a new {@link CarbonCachedValue}.
+     * Create a new {@link org.wso2.carbon.caching.internal.CarbonCachedValue}.
      */
     CREATE,
 
     /**
-     * Loaded a new {@link CarbonCachedValue}.
+     * Loaded a new {@link org.wso2.carbon.caching.internal.CarbonCachedValue}.
      */
     LOAD,
 
     /**
-     * Remove the {@link CarbonCachedValue} (and thus the Cache Entry).
+     * Remove the {@link org.wso2.carbon.caching.internal.CarbonCachedValue} (and thus the Cache Entry).
      */
     REMOVE,
 
     /**
-     * Update the {@link CarbonCachedValue}.
+     * Update the {@link org.wso2.carbon.caching.internal.CarbonCachedValue}.
      */
     UPDATE;
 }

@@ -266,6 +266,12 @@
                 <version>${carbon.kernel.version}</version>
                 <scope>test</scope>
             </dependency>
+            <dependency>
+                <groupId>org.wso2.carbon</groupId>
+                <artifactId>osgi-test-util</artifactId>
+                <version>${carbon.kernel.version}</version>
+                <scope>test</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -281,7 +287,7 @@
         <slf4j.api.version>1.7.12</slf4j.api.version>
         <carbon.caching.version>1.0.0-SNAPSHOT</carbon.caching.version>
         <carbon.feature.plugin.version>2.0.0</carbon.feature.plugin.version>
-        <carbon.kernel.version>5.0.0</carbon.kernel.version>
+        <carbon.kernel.version>5.1.0-SNAPSHOT</carbon.kernel.version>
         <osgi.api.version>6.0.0</osgi.api.version>
 
         <!-- Equinox dependency versions -->

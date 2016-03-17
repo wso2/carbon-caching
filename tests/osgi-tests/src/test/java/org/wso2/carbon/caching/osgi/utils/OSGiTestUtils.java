@@ -17,15 +17,17 @@ package org.wso2.carbon.caching.osgi.utils;
 
 import org.ops4j.pax.exam.Option;
 import org.wso2.carbon.kernel.Constants;
+import org.wso2.carbon.osgi.test.util.CarbonSysPropConfiguration;
+import org.wso2.carbon.osgi.test.util.OSGiTestConfigurationUtils;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Stream;
 
 import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
-import static org.ops4j.pax.exam.CoreOptions.options;
-import static org.ops4j.pax.exam.CoreOptions.repositories;
 
 /**
  * This class contains Utility methods to configure PAX-EXAM container.
@@ -42,7 +44,6 @@ public class OSGiTestUtils {
      */
     public static void setupOSGiTestEnvironment() {
         OSGiTestUtils.setCarbonHome();
-        OSGiTestUtils.setRequiredSystemProperties();
         OSGiTestUtils.setStartupTime();
     }
 
@@ -52,69 +53,24 @@ public class OSGiTestUtils {
      * @return array of Options
      */
     public static Option[] getDefaultPaxOptions() {
-        return options(
-                repositories("http://maven.wso2.org/nexus/content/groups/wso2-public"),
+        List<Option> optionList = new ArrayList<>();
+        optionList.add(
+                mavenBundle().artifactId("org.wso2.carbon.caching").groupId("org.wso2.carbon.caching").
+                        versionAsInProject());
 
-                //must install the testng bundle
-                mavenBundle().artifactId("testng").groupId("org.testng").versionAsInProject(),
-                mavenBundle().artifactId("org.eclipse.osgi.services").groupId("org.wso2.eclipse.osgi").
-                        versionAsInProject(),
-                mavenBundle().artifactId("pax-logging-api").groupId("org.ops4j.pax.logging").
-                        versionAsInProject(),
-                mavenBundle().artifactId("pax-logging-log4j2").groupId("org.ops4j.pax.logging").
-                        versionAsInProject(),
-                mavenBundle().artifactId("org.eclipse.equinox.simpleconfigurator").groupId("org.wso2.eclipse.equinox").
-                        versionAsInProject(),
-                mavenBundle().artifactId("org.apache.felix.gogo.command").groupId("org.apache.felix").
-                        versionAsInProject(),
-                mavenBundle().artifactId("org.apache.felix.gogo.runtime").groupId("org.apache.felix").
-                        versionAsInProject(),
-                mavenBundle().artifactId("org.apache.felix.gogo.shell").groupId("org.apache.felix").
-                        versionAsInProject(),
-                mavenBundle().artifactId("org.eclipse.equinox.app").groupId("org.wso2.eclipse.equinox").
-                        versionAsInProject(),
-                mavenBundle().artifactId("org.eclipse.equinox.common").groupId("org.wso2.eclipse.equinox").
-                        versionAsInProject(),
-                mavenBundle().artifactId("org.eclipse.equinox.concurrent").groupId("org.wso2.eclipse.equinox").
-                        versionAsInProject(),
-                mavenBundle().artifactId("org.eclipse.equinox.console").groupId("org.wso2.eclipse.equinox").
-                        versionAsInProject(),
-                mavenBundle().artifactId("org.eclipse.equinox.ds").groupId("org.wso2.eclipse.equinox").
-                        versionAsInProject(),
-                mavenBundle().artifactId("org.eclipse.equinox.frameworkadmin").groupId("org.wso2.eclipse.equinox").
-                        versionAsInProject(),
-                mavenBundle().artifactId("org.eclipse.equinox.frameworkadmin.equinox").
-                        groupId("org.wso2.eclipse.equinox").versionAsInProject(),
-                mavenBundle().artifactId("org.eclipse.equinox.launcher").groupId("org.wso2.eclipse.equinox").
-                        versionAsInProject(),
-                mavenBundle().artifactId("org.eclipse.equinox.preferences").groupId("org.wso2.eclipse.equinox").
-                        versionAsInProject(),
-                mavenBundle().artifactId("org.eclipse.equinox.registry").groupId("org.wso2.eclipse.equinox").
-                        versionAsInProject(),
-                mavenBundle().artifactId("org.eclipse.equinox.simpleconfigurator.manipulator").
-                        groupId("org.wso2.eclipse.equinox").versionAsInProject(),
-                mavenBundle().artifactId("org.eclipse.equinox.util").groupId("org.wso2.eclipse.equinox").
-                        versionAsInProject(),
-                mavenBundle().artifactId("org.eclipse.equinox.cm").groupId("org.wso2.eclipse.equinox").
-                        versionAsInProject(),
-                mavenBundle().artifactId("snakeyaml").groupId("org.wso2.orbit.org.yaml").
-                        versionAsInProject(),
-                mavenBundle().artifactId("org.wso2.carbon.core").groupId("org.wso2.carbon").versionAsInProject(),
+        String currentDir = Paths.get("").toAbsolutePath().toString();
+        Path carbonHome = Paths.get(currentDir, "target", "carbon-home");
 
-                mavenBundle().artifactId("org.wso2.carbon.caching").groupId("org.wso2.carbon.caching").versionAsInProject()
-        );
+        CarbonSysPropConfiguration sysPropConfiguration = new CarbonSysPropConfiguration();
+        sysPropConfiguration.setCarbonHome(carbonHome.toString());
+        sysPropConfiguration.setServerKey("carbon-caching");
+        sysPropConfiguration.setServerName("WSO2 Carbon Caching Server");
+        sysPropConfiguration.setServerVersion("1.0.0");
+
+        optionList = OSGiTestConfigurationUtils.getConfiguration(optionList, sysPropConfiguration);
+        return optionList.toArray(new Option[optionList.size()]);
     }
 
-    /**
-     * Returns a merged array of user specified options and default options.
-     *
-     * @param options custom options.
-     * @return a merged array.
-     */
-    public static Option[] getDefaultPaxOptions(Option[] options) {
-        return Stream.concat(Arrays.stream(getDefaultPaxOptions()), Arrays.stream(options))
-                .toArray(Option[]::new);
-    }
 
     /**
      * Set the carbon home for execute tests.
@@ -124,12 +80,6 @@ public class OSGiTestUtils {
         String currentDir = Paths.get("").toAbsolutePath().toString();
         Path carbonHome = Paths.get(currentDir, "target", "carbon-home");
         System.setProperty("carbon.home", carbonHome.toString());
-    }
-
-    private static void setRequiredSystemProperties() {
-        System.setProperty("server.key", "carbon-kernel");
-        System.setProperty("server.name", "WSO2 Carbon Kernel");
-        System.setProperty("server.version", "5.0.0");
     }
 
     /**

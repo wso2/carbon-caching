@@ -4,61 +4,18 @@
     <option name="configuration">
       <map>
         <entry key="location-0" value="CLASSPATH:/sun_checks.xml:The default Checkstyle rules" />
+        <entry key="scan-before-checkin" value="false" />
       </map>
     </option>
   </component>
-  <component name="CodeStyleManager">
-    <option name="USE_DEFAULT_CODE_STYLE_SCHEME" value="true" />
-    <option name="CODE_STYLE_SCHEME" value="" />
-  </component>
   <component name="CompilerConfiguration">
-    <option name="DEFAULT_COMPILER" value="Javac" />
     <resourceExtensions />
-    <wildcardResourcePatterns>
-      <entry name="!?*.java" />
-    </wildcardResourcePatterns>
+    <wildcardResourcePatterns />
     <annotationProcessing>
       <profile default="true" name="Default" enabled="false">
         <processorPath useClasspath="true" />
       </profile>
-      <profile default="false" name="Annotation profile for org.wso2.carbon.caching" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="true" />
-        <module name="org.wso2.carbon.caching" />
-      </profile>
-      <profile default="false" name="Annotation profile for caching-sample" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="true" />
-        <module name="caching-sample" />
-      </profile>
-      <profile default="false" name="Annotation profile for org.wso2.carbon.caching.osgi.tests" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="true" />
-        <module name="org.wso2.carbon.caching.osgi.tests" />
-      </profile>
-      <profile default="false" name="Annotation profile for org.wso2.carbon.caching.feature" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="true" />
-        <module name="org.wso2.carbon.caching.feature" />
-      </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="caching-sample" target="1.8" />
-      <module name="carbon-caching-tests" target="1.8" />
-      <module name="org.wso2.carbon.caching" target="1.8" />
-      <module name="org.wso2.carbon.caching.feature" target="1.8" />
-      <module name="org.wso2.carbon.caching.osgi.tests" target="1.8" />
-      <module name="org.wso2.carbon.caching.parent" target="1.8" />
-      <module name="wso2carbon-caching" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
   <component name="CopyrightManager" default="" />
   <component name="Encoding">
@@ -66,48 +23,6 @@
   </component>
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
-  </component>
-  <component name="ExportToHTMLSettings">
-    <option name="PRINT_LINE_NUMBERS" value="false" />
-    <option name="OPEN_IN_BROWSER" value="false" />
-    <option name="OUTPUT_DIRECTORY" />
-  </component>
-  <component name="ImportConfiguration">
-    <option name="VENDOR" />
-    <option name="RELEASE_TAG" />
-    <option name="LOG_MESSAGE" />
-    <option name="CHECKOUT_AFTER_IMPORT" value="true" />
-  </component>
-  <component name="JUnitProjectSettings">
-    <option name="TEST_RUNNER" value="UI" />
-  </component>
-  <component name="JavadocGenerationManager">
-    <option name="OUTPUT_DIRECTORY" />
-    <option name="OPTION_SCOPE" value="protected" />
-    <option name="OPTION_HIERARCHY" value="false" />
-    <option name="OPTION_NAVIGATOR" value="false" />
-    <option name="OPTION_INDEX" value="false" />
-    <option name="OPTION_SEPARATE_INDEX" value="false" />
-    <option name="OPTION_USE_1_1" value="false" />
-    <option name="OPTION_DOCUMENT_TAG_USE" value="false" />
-    <option name="OPTION_DOCUMENT_TAG_AUTHOR" value="false" />
-    <option name="OPTION_DOCUMENT_TAG_VERSION" value="false" />
-    <option name="OPTION_DOCUMENT_TAG_DEPRECATED" value="false" />
-    <option name="OPTION_DEPRECATED_LIST" value="false" />
-    <option name="OTHER_OPTIONS" />
-    <option name="HEAP_SIZE" />
-    <option name="OPEN_IN_BROWSER" value="false" />
-  </component>
-  <component name="JikesSettings">
-    <option name="DEBUGGING_INFO" value="true" />
-    <option name="DEPRECATION" value="true" />
-    <option name="GENERATE_NO_WARNINGS" value="false" />
-    <option name="GENERATE_MAKE_FILE_DEPENDENCIES" value="false" />
-    <option name="DO_FULL_DEPENDENCE_CHECK" value="false" />
-    <option name="IS_INCREMENTAL_MODE" value="false" />
-    <option name="IS_EMACS_ERRORS_MODE" value="true" />
-    <option name="ADDITIONAL_OPTIONS_STRING" value="" />
-    <option name="MAXIMUM_HEAP_SIZE" value="128" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
@@ -935,26 +850,37 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/testng/testng/6.9.4/testng-6.9.4-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.wso2.carbon:org.wso2.carbon.core:5.0.0">
+    <library name="Maven: org.wso2.carbon:org.wso2.carbon.core:5.1.0-SNAPSHOT">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/wso2/carbon/org.wso2.carbon.core/5.0.0/org.wso2.carbon.core-5.0.0.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/wso2/carbon/org.wso2.carbon.core/5.1.0-SNAPSHOT/org.wso2.carbon.core-5.1.0-20160317.061139-137.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/wso2/carbon/org.wso2.carbon.core/5.0.0/org.wso2.carbon.core-5.0.0-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/wso2/carbon/org.wso2.carbon.core/5.1.0-SNAPSHOT/org.wso2.carbon.core-5.1.0-20160317.061139-137-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/wso2/carbon/org.wso2.carbon.core/5.0.0/org.wso2.carbon.core-5.0.0-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/wso2/carbon/org.wso2.carbon.core/5.1.0-SNAPSHOT/org.wso2.carbon.core-5.1.0-20160317.061139-137-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.wso2.carbon:org.wso2.carbon.launcher:5.0.0">
+    <library name="Maven: org.wso2.carbon:org.wso2.carbon.launcher:5.1.0-SNAPSHOT">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/wso2/carbon/org.wso2.carbon.launcher/5.0.0/org.wso2.carbon.launcher-5.0.0.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/wso2/carbon/org.wso2.carbon.launcher/5.1.0-SNAPSHOT/org.wso2.carbon.launcher-5.1.0-20160317.061211-137.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/wso2/carbon/org.wso2.carbon.launcher/5.0.0/org.wso2.carbon.launcher-5.0.0-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/wso2/carbon/org.wso2.carbon.launcher/5.1.0-SNAPSHOT/org.wso2.carbon.launcher-5.1.0-20160317.061211-137-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/wso2/carbon/org.wso2.carbon.launcher/5.0.0/org.wso2.carbon.launcher-5.0.0-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/wso2/carbon/org.wso2.carbon.launcher/5.1.0-SNAPSHOT/org.wso2.carbon.launcher-5.1.0-20160317.061211-137-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.wso2.carbon:osgi-test-util:5.1.0-SNAPSHOT">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/wso2/carbon/osgi-test-util/5.1.0-SNAPSHOT/osgi-test-util-5.1.0-20160317.061309-16.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/wso2/carbon/osgi-test-util/5.1.0-SNAPSHOT/osgi-test-util-5.1.0-20160317.061309-16-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/wso2/carbon/osgi-test-util/5.1.0-SNAPSHOT/osgi-test-util-5.1.0-20160317.061309-16-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.wso2.eclipse.equinox:org.eclipse.equinox.app:1.3.200.v20130910-1609">

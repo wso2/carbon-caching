@@ -31,7 +31,7 @@
     <packaging>bundle</packaging>
     <version>1.0.0-SNAPSHOT</version>
 
-    <name>WSO2 Carbon - Caching Sample Bundle</name>
+    <name>WSO2 Carbon Caching - Sample Bundle</name>
     <url>http://wso2.com</url>
 
     <dependencies>

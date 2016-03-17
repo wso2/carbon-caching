@@ -30,7 +30,7 @@
     <artifactId>org.wso2.carbon.caching.osgi.tests</artifactId>
     <packaging>bundle</packaging>
 
-    <name>WSO2 Carbon - Carbon Caching OSGi Tests</name>
+    <name>WSO2 Carbon Caching - OSGi Tests</name>
     <url>http://wso2.com</url>
 
     <build>

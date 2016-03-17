@@ -29,7 +29,7 @@
     <artifactId>org.wso2.carbon.caching.feature</artifactId>
 
     <packaging>carbon-feature</packaging>
-    <name>WSO2 Carbon - Caching Feature</name>
+    <name>WSO2 Carbon Caching - Feature</name>
     <url>http://wso2.org</url>
     <description>This feature contains the core bundles required by the Caching feature
     </description>

@@ -20,6 +20,7 @@ import org.wso2.carbon.caching.internal.CarbonCacheManager;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 import java.util.WeakHashMap;
 import javax.cache.CacheException;
@@ -128,10 +129,8 @@ public class CarbonCachingProvider implements CachingProvider {
         WeakHashMap<ClassLoader, HashMap<URI, CacheManager>> managersByClassLoader = this.cacheManagersByClassLoader;
         this.cacheManagersByClassLoader = new WeakHashMap<ClassLoader, HashMap<URI, CacheManager>>();
 
-        for (ClassLoader classLoader : managersByClassLoader.keySet()) {
-            for (CacheManager cacheManager : managersByClassLoader.get(classLoader).values()) {
-                cacheManager.close();
-            }
+        for (Map.Entry<ClassLoader, HashMap<URI, CacheManager>> entry : managersByClassLoader.entrySet()) {
+            entry.getValue().values().forEach(CacheManager::close);
         }
     }
 
@@ -145,9 +144,7 @@ public class CarbonCachingProvider implements CachingProvider {
         HashMap<URI, CacheManager> cacheManagersByURI = cacheManagersByClassLoader.remove(managerClassLoader);
 
         if (cacheManagersByURI != null) {
-            for (CacheManager cacheManager : cacheManagersByURI.values()) {
-                cacheManager.close();
-            }
+            cacheManagersByURI.values().forEach(CacheManager::close);
         }
     }
 

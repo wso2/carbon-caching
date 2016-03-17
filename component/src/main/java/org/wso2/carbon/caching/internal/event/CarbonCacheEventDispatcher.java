@@ -46,8 +46,7 @@ public class CarbonCacheEventDispatcher<K, V> {
      * Constructs an {@link CarbonCacheEventDispatcher}.
      */
     public CarbonCacheEventDispatcher() {
-        this.eventMap = new ConcurrentHashMap<Class<? extends CacheEntryListener>,
-                ArrayList<CacheEntryEvent<K, V>>>();
+        this.eventMap = new ConcurrentHashMap<>();
     }
 
     /**
@@ -72,17 +71,8 @@ public class CarbonCacheEventDispatcher<K, V> {
             throw new IllegalArgumentException("listenerClass must be an CacheEntryListener interface");
         }
 
-        //for safety
-        ArrayList<CacheEntryEvent<K, V>> eventList;
-        synchronized (this) {
-            eventList = eventMap.get(listenerClass);
-            if (eventList == null) {
-                eventList = new ArrayList<CacheEntryEvent<K, V>>();
-                eventMap.put(listenerClass, eventList);
-            }
-        }
-
-        eventList.add(event);
+        eventMap.putIfAbsent(listenerClass, new ArrayList<>());
+        eventMap.get(listenerClass).add(event);
     }
 
     /**
@@ -94,15 +84,6 @@ public class CarbonCacheEventDispatcher<K, V> {
      * @see #addEvent(Class, CacheEntryEvent)
      */
     public void dispatch(Iterable<CarbonCacheEntryListenerRegistration<K, V>> registrations) {
-
-        //TODO: we could really optimize this implementation
-
-        //TODO: we need to handle exceptions here
-
-        //TODO: we need to work out which events should be raised synchronously or asynchronously
-
-        //TODO: we need to remove/hide old values appropriately
-
         Iterable<CacheEntryEvent<K, V>> events;
 
         try {

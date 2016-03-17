@@ -26,7 +26,7 @@ import javax.cache.management.CacheStatisticsMXBean;
 /**
  * The reference implementation of {@link CacheStatisticsMXBean}.
  */
-public class CarbonCacheStatisticsMXBean implements CacheStatisticsMXBean, Serializable {
+public class CarbonCacheStatisticsMXBean implements CacheStatisticsMXBean {
 
     private static final long serialVersionUID = -5589437411679003894L;
     private static final long NANOSECONDS_IN_A_MICROSECOND = 1000L;

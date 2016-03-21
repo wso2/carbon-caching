@@ -15,9 +15,7 @@
   ~ limitations under the License.
   -->
 
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -29,14 +27,14 @@
     <groupId>org.wso2.carbon.caching</groupId>
     <artifactId>org.wso2.carbon.caching.parent</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0-m1</version>
     <name>WSO2 Carbon Caching - Parent</name>
 
     <scm>
         <url>https://github.com/wso2/carbon-caching.git</url>
         <developerConnection>scm:git:https://github.com/wso2/carbon-caching.git</developerConnection>
         <connection>scm:git:https://github.com/wso2/carbon-caching.git</connection>
-        <tag>HEAD</tag>
+        <tag>v1.0.0-m1</tag>
     </scm>
 
     <developers>
@@ -312,7 +310,7 @@
     <properties>
         <slf4j.api.version>1.7.12</slf4j.api.version>
         <javax.cache.api.version>1.0.0</javax.cache.api.version>
-        <carbon.caching.version>1.0.0-SNAPSHOT</carbon.caching.version>
+        <carbon.caching.version>1.0.0-m1</carbon.caching.version>
         <carbon.feature.plugin.version>2.0.0</carbon.feature.plugin.version>
         <carbon.kernel.version>5.1.0-m1</carbon.kernel.version>
         <osgi.api.version>6.0.0</osgi.api.version>

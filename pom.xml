@@ -32,9 +32,9 @@
     <version>1.0.0-SNAPSHOT</version>
 
     <scm>
-        <url>https://github.com/wso2/product-mss.git</url>
-        <developerConnection>scm:git:https://github.com/wso2/product-mss.git</developerConnection>
-        <connection>scm:git:https://github.com/wso2/product-mss.git</connection>
+        <url>https://github.com/wso2/carbon-caching.git</url>
+        <developerConnection>scm:git:https://github.com/wso2/carbon-caching.git</developerConnection>
+        <connection>scm:git:https://github.com/wso2/carbon-caching.git</connection>
         <tag>HEAD</tag>
     </scm>
 
@@ -62,6 +62,31 @@
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <configuration>
+                    <preparationGoals>clean install</preparationGoals>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>docs</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>javadoc</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
@@ -278,16 +303,16 @@
     <modules>
         <module>component</module>
         <module>feature</module>
-        <module>distribution</module>
         <module>samples/caching-sample</module>
         <module>tests</module>
+        <module>distribution</module>
     </modules>
 
     <properties>
         <slf4j.api.version>1.7.12</slf4j.api.version>
         <carbon.caching.version>1.0.0-SNAPSHOT</carbon.caching.version>
         <carbon.feature.plugin.version>2.0.0</carbon.feature.plugin.version>
-        <carbon.kernel.version>5.1.0-SNAPSHOT</carbon.kernel.version>
+        <carbon.kernel.version>5.1.0-m1</carbon.kernel.version>
         <osgi.api.version>6.0.0</osgi.api.version>
 
         <!-- Equinox dependency versions -->

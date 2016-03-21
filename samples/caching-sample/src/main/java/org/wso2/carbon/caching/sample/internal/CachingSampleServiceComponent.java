@@ -92,7 +92,7 @@ public class CachingSampleServiceComponent {
     }
 
     /**
-     * we initialize a cache with name
+     * we initialize a cache with name.
      *
      * @param name Name of the cache
      */

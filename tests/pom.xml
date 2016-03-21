@@ -26,7 +26,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>carbon-caching-tests</artifactId>
     <packaging>pom</packaging>
-    <name>WSO2 Carbon - Caching Tests</name>
+    <name>WSO2 Carbon Caching - Tests</name>
     <url>http://wso2.com</url>
 
     <modules>

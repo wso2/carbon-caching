@@ -29,7 +29,7 @@ public class CarbonCacheEntry<K, V> implements Cache.Entry<K, V> {
     private final V oldValue;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public CarbonCacheEntry(K key, V value) {
         this.key = key;
@@ -38,7 +38,7 @@ public class CarbonCacheEntry<K, V> implements Cache.Entry<K, V> {
     }
 
     /**
-     * Constructor
+     * Constructor.
      */
     public CarbonCacheEntry(K key, V value, V oldValue) {
         this.key = key;

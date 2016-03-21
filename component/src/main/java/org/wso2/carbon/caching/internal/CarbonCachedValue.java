@@ -127,7 +127,7 @@ public class CarbonCachedValue {
     }
 
     /**
-     * Gets the number of times the internal value has been modified (set)
+     * Gets the number of times the internal value has been modified (set).
      *
      * @return the modification count
      */
@@ -157,7 +157,7 @@ public class CarbonCachedValue {
 
     /**
      * Determines if the Cache Entry associated with this value would be expired
-     * at the specified time
+     * at the specified time.
      *
      * @param now time in milliseconds (since the Epoc)
      * @return true if the value would be expired at the specified time
@@ -176,7 +176,7 @@ public class CarbonCachedValue {
     }
 
     /**
-     * Sets the internal value (without updating the modification time)
+     * Sets the internal value (without updating the modification time).
      *
      * @param internalValue the new internal value
      */

@@ -35,7 +35,7 @@ public class CarbonCacheEntryEvent<K, V> extends CacheEntryEvent<K, V> {
 
     /**
      * Constructs a cache entry event from a given cache as source
-     * (without an old value)
+     * (without an old value).
      *
      * @param source the cache that originated the event
      * @param key    the key
@@ -51,7 +51,7 @@ public class CarbonCacheEntryEvent<K, V> extends CacheEntryEvent<K, V> {
 
     /**
      * Constructs a cache entry event from a given cache as source
-     * (with an old value)
+     * (with an old value).
      *
      * @param source   the cache that originated the event
      * @param key      the key

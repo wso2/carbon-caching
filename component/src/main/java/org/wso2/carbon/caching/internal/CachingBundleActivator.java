@@ -24,7 +24,7 @@ import org.osgi.framework.BundleContext;
 import org.wso2.carbon.caching.CarbonCachingService;
 
 /**
- * Carbon caching BundleActivator
+ * Carbon caching BundleActivator.
  */
 public class CachingBundleActivator implements BundleActivator {
     @Override

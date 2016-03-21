@@ -29,13 +29,13 @@ public final class LockManager<K> {
     private final LockFactory lockFactory = new LockFactory();
 
     /**
-     * Constructor
+     * Constructor.
      */
     LockManager() {
     }
 
     /**
-     * Lock the object
+     * Lock the object.
      *
      * @param key the key
      */
@@ -56,7 +56,7 @@ public final class LockManager<K> {
     }
 
     /**
-     * Unlock the object
+     * Unlock the object.
      *
      * @param key the object
      */

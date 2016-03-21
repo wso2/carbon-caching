@@ -94,7 +94,7 @@ public final class CarbonCache<K, V> implements Cache<K, V> {
     private final String cacheName;
 
     /**
-     * The {@link CacheManager} that created this implementation
+     * The {@link CacheManager} that created this implementation.
      */
     private final CarbonCacheManager cacheManager;
 
@@ -1794,7 +1794,7 @@ public final class CarbonCache<K, V> implements Cache<K, V> {
 
 
     /**
-     * Sets statistics
+     * Sets statistics.
      */
     public void setStatisticsEnabled(boolean enabled) {
         if (enabled) {
@@ -1809,7 +1809,7 @@ public final class CarbonCache<K, V> implements Cache<K, V> {
 
 
     /**
-     * Sets management enablement
+     * Sets management enablement.
      *
      * @param enabled true if management should be enabled
      */
@@ -2031,7 +2031,7 @@ public final class CarbonCache<K, V> implements Cache<K, V> {
         private CarbonCacheEntry<K, V> nextEntry;
 
         /**
-         * The last returned cache entry (so we can allow for removal)
+         * The last returned cache entry (so we can allow for removal).
          */
         private CarbonCacheEntry<K, V> lastEntry;
 

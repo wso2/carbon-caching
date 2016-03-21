@@ -65,7 +65,7 @@ public class EntryProcessorEntry<K, V> implements MutableEntry<K, V> {
     private CacheLoader<K, V> cacheLoader;
 
     /**
-     * Construct a {@link MutableEntry}
+     * Construct a {@link MutableEntry}.
      *
      * @param key         the key for the {@link MutableEntry}
      * @param cachedValue the {@link CarbonCachedValue} of the {@link MutableEntry}
@@ -173,7 +173,7 @@ public class EntryProcessorEntry<K, V> implements MutableEntry<K, V> {
     }
 
     /**
-     * Return the operation
+     * Return the operation.
      */
     public MutableEntryOperation getOperation() {
         return operation;

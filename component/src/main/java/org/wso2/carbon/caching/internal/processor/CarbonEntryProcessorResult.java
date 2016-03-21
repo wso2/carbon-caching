@@ -36,7 +36,7 @@ public class CarbonEntryProcessorResult<T> implements EntryProcessorResult<T> {
     private final CacheException exception;
 
     /**
-     * Constructs an {@link CarbonEntryProcessorResult} for a resulting value
+     * Constructs an {@link CarbonEntryProcessorResult} for a resulting value.
      *
      * @param result the result
      */

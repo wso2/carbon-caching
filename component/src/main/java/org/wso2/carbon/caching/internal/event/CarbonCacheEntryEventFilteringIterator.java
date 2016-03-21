@@ -21,7 +21,7 @@ import javax.cache.event.CacheEntryEvent;
 import javax.cache.event.CacheEntryEventFilter;
 
 /**
- * A adapter to {@link Iterator}s to allow filtering of {@link CacheEntryEvent}s
+ * A adapter to {@link Iterator}s to allow filtering of {@link CacheEntryEvent}s.
  *
  * @param <K> the type of keys
  * @param <V> the type of value
@@ -59,7 +59,7 @@ public class CarbonCacheEntryEventFilteringIterator<K, V> implements Iterator<Ca
 
     /**
      * Fetches the next available, entry that satisfies the filter from
-     * the underlying iterator
+     * the underlying iterator.
      */
     private void fetch() {
         while (nextEntry == null && iterator.hasNext()) {

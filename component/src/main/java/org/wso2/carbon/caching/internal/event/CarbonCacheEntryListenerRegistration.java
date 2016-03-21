@@ -139,7 +139,7 @@ public class CarbonCacheEntryListenerRegistration<K, V> {
     }
 
     /**
-     * Gets the underlying configuration used to create this registration
+     * Gets the underlying configuration used to create this registration.
      *
      * @return the configuration
      */

@@ -334,7 +334,7 @@
         <pax.url.aether.version>1.6.0</pax.url.aether.version>
         <org.jacoco.ant.version>0.7.5.201505241946</org.jacoco.ant.version>
         <maven.paxexam.plugin.version>1.2.4</maven.paxexam.plugin.version>
-        <maven.jacoco.version>0.7.5.201505241946</maven.jacoco.version>
+        <maven.jacoco.plugin.version>0.7.5.201505241946</maven.jacoco.plugin.version>
         <equinox.simpleconfigurator.version>1.1.0.v20131217-1203</equinox.simpleconfigurator.version>
         <apache.felix.gogo.command.version>0.10.0.v201209301215</apache.felix.gogo.command.version>
         <apache.felix.gogo.runtime.version>0.10.0.v201209301036</apache.felix.gogo.runtime.version>

@@ -34,6 +34,9 @@ import javax.inject.Inject;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNull;
 
+/**
+ * Caching OSGi Test class.
+ */
 @Listeners(PaxExam.class)
 @ExamReactorStrategy(PerClass.class)
 public class CachingTest {
@@ -69,7 +72,7 @@ public class CachingTest {
     }
 
     /**
-     * we initialize a cache with name
+     * we initialize a cache with name.
      *
      * @param name Name of the cache
      */

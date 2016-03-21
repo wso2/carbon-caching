@@ -278,9 +278,9 @@
     <modules>
         <module>component</module>
         <module>feature</module>
-        <module>distribution</module>
         <module>samples/caching-sample</module>
         <module>tests</module>
+        <module>distribution</module>
     </modules>
 
     <properties>

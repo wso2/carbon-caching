@@ -21,7 +21,7 @@ import javax.cache.configuration.Configuration;
 import javax.cache.management.CacheMXBean;
 
 /**
- * Class to help implementers
+ * Class to help implementers.
  *
  * @param <K> the type of keys maintained by this map
  * @param <V> the type of mapped values*
@@ -32,7 +32,7 @@ public class CarbonCacheMXBean<K, V> implements CacheMXBean {
 
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param cache the cache
      */

@@ -33,7 +33,7 @@ public class RITCKMBeanServerBuilder extends MBeanServerBuilder {
 
 
     /**
-     * Empty public constructor as required
+     * Empty public constructor as required.
      */
     public RITCKMBeanServerBuilder() {
         super();
@@ -58,7 +58,7 @@ public class RITCKMBeanServerBuilder extends MBeanServerBuilder {
         private MBeanServerDelegate delegate;
 
         /**
-         * Constructor
+         * Constructor.
          *
          * @param delegate the provided delegate
          */

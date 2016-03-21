@@ -39,7 +39,7 @@ public final class MBeanServerRegistrationUtility {
     }
 
     /**
-     * Utility method for registering CacheStatistics with the MBeanServer
+     * Utility method for registering CacheStatistics with the MBeanServer.
      *
      * @param cache the cache to register
      */
@@ -79,7 +79,7 @@ public final class MBeanServerRegistrationUtility {
     }
 
     /**
-     * Removes registered CacheStatistics for a Cache
+     * Removes registered CacheStatistics for a Cache.
      *
      * @throws CacheException - all exceptions are wrapped in CacheException
      */
@@ -105,7 +105,7 @@ public final class MBeanServerRegistrationUtility {
     /**
      * Creates an object name using the scheme
      * "javax.cache:type=Cache&lt;Statistics|Configuration&gt;,CacheManager=&lt;
-     * cacheManagerName&gt;,name=&lt;cacheName&gt;"
+     * cacheManagerName&gt;,name=&lt;cacheName&gt;".
      */
     private static ObjectName calculateObjectName(Cache cache, ObjectNameType objectNameType) {
         String cacheManagerName = mbeanSafe(cache.getCacheManager().getURI().toString());
@@ -132,17 +132,17 @@ public final class MBeanServerRegistrationUtility {
 
 
     /**
-     * The type of registered Object
+     * The type of registered Object.
      */
     public enum ObjectNameType {
 
         /**
-         * Cache Statistics
+         * Cache Statistics.
          */
         Statistics,
 
         /**
-         * Cache Configuration
+         * Cache Configuration.
          */
         Configuration
 

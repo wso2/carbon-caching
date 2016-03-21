@@ -31,7 +31,7 @@ import javax.cache.expiry.Duration;
 import javax.cache.spi.CachingProvider;
 
 /**
- * OSGi Command provider for testing Carbon caching
+ * OSGi Command provider for testing Carbon caching.
  */
 @SuppressWarnings("unused")
 public class CachingCommandProvider implements CommandProvider {
@@ -126,7 +126,7 @@ public class CachingCommandProvider implements CommandProvider {
     }
 
     /**
-     * we initialize a cache with name
+     * we initialize a cache with name.
      *
      * @param name Name of the cache
      */

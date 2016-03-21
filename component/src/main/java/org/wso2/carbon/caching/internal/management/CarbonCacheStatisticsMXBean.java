@@ -41,7 +41,7 @@ public class CarbonCacheStatisticsMXBean implements CacheStatisticsMXBean {
     private transient Cache<?, ?> cache;
 
     /**
-     * Constructs a cache statistics object
+     * Constructs a cache statistics object.
      *
      * @param cache the associated cache
      */
@@ -263,7 +263,7 @@ public class CarbonCacheStatisticsMXBean implements CacheStatisticsMXBean {
     }
 
     /**
-     * Increments the get time accumulator
+     * Increments the get time accumulator.
      *
      * @param duration the time taken in nanoseconds
      */
@@ -279,7 +279,7 @@ public class CarbonCacheStatisticsMXBean implements CacheStatisticsMXBean {
 
 
     /**
-     * Increments the put time accumulator
+     * Increments the put time accumulator.
      *
      * @param duration the time taken in nanoseconds
      */
@@ -294,7 +294,7 @@ public class CarbonCacheStatisticsMXBean implements CacheStatisticsMXBean {
     }
 
     /**
-     * Increments the remove time accumulator
+     * Increments the remove time accumulator.
      *
      * @param duration the time taken in nanoseconds
      */

@@ -312,7 +312,7 @@
         <slf4j.api.version>1.7.12</slf4j.api.version>
         <carbon.caching.version>1.0.0-SNAPSHOT</carbon.caching.version>
         <carbon.feature.plugin.version>2.0.0</carbon.feature.plugin.version>
-        <carbon.kernel.version>5.1.0-SNAPSHOT</carbon.kernel.version>
+        <carbon.kernel.version>5.1.0-m1</carbon.kernel.version>
         <osgi.api.version>6.0.0</osgi.api.version>
 
         <!-- Equinox dependency versions -->

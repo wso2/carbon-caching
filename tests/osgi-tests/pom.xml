@@ -298,6 +298,7 @@
                     <plugin>
                         <groupId>org.jacoco</groupId>
                         <artifactId>jacoco-maven-plugin</artifactId>
+                        <version>${maven.jacoco.version}</version>
                         <executions>
                             <execution>
                                 <id>default-prepare-agent</id>

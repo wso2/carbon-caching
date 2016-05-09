@@ -33,6 +33,7 @@
                 <exclude>**/*.ipr</exclude>
                 <exclude>**/*.iwr</exclude>
                 <exclude>**/*.eclipse</exclude>
+                <exclude>**/conf/osgi/launch.properties</exclude>
             </excludes>
         </fileSet>
 

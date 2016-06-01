@@ -99,7 +99,6 @@
             org.osgi.service.cm.*; version="${osgi.services.cm.package.import.version.range}",
             org.osgi.util.tracker; version="${osgi.service.tracker.package.import.version.range}",
             javax.management.*; version="${javax.management.package.import.version.range}",
-            javax.cache.*; version="${javax.cache.package.import.version.range}",
             javax.enterprise.util;resolution:=optional,
         </import.package>
 
@@ -116,7 +115,6 @@
         </org.eclipse.osgi.util.package.import.version.range>
 
         <!-- Dependency package version ranges -->
-        <javax.cache.package.import.version.range>[1.0.0, 1.1.0)</javax.cache.package.import.version.range>
         <javax.management.package.import.version.range>0.0.0</javax.management.package.import.version.range>
 
         <!--Logging API version range-->

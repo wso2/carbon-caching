@@ -41,7 +41,7 @@ public class OSGiTestUtils {
      * setting the maven local repo directory, etc.
      */
     public static void setupOSGiTestEnvironment() {
-        OSGiTestUtils.setCarbonHome();
+//        OSGiTestUtils.setCarbonHome();
         OSGiTestUtils.setStartupTime();
     }
 
@@ -57,7 +57,7 @@ public class OSGiTestUtils {
                         versionAsInProject());
 
         String currentDir = Paths.get("").toAbsolutePath().toString();
-        Path carbonHome = Paths.get(currentDir, "target", "carbon-home");
+        Path carbonHome = Paths.get(currentDir, "target", "test-classes", "carbon-home");
 
         CarbonSysPropConfiguration sysPropConfiguration = new CarbonSysPropConfiguration();
         sysPropConfiguration.setCarbonHome(carbonHome.toString());
@@ -74,11 +74,11 @@ public class OSGiTestUtils {
      * Set the carbon home for execute tests.
      * Carbon home is set to /carbon-kernel/tests/osgi-tests/target/carbon-home
      */
-    private static void setCarbonHome() {
+    /*private static void setCarbonHome() {
         String currentDir = Paths.get("").toAbsolutePath().toString();
-        Path carbonHome = Paths.get(currentDir, "target", "carbon-home");
+        Path carbonHome = Paths.get(currentDir, "target", "test-classes", "carbon-home");
         System.setProperty("carbon.home", carbonHome.toString());
-    }
+    }*/
 
     /**
      * Set the startup time to calculate the server startup time.

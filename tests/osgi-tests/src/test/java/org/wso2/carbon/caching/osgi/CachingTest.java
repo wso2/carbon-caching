@@ -21,6 +21,7 @@ import org.ops4j.pax.exam.testng.listener.PaxExam;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.wso2.carbon.caching.CarbonCachingService;
+import org.wso2.carbon.kernel.utils.CarbonServerInfo;
 
 import java.util.concurrent.TimeUnit;
 import javax.cache.Cache;
@@ -44,6 +45,10 @@ public class CachingTest {
     private static final String KEY = "k";
     private static final String VALUE = "v";
     private Duration cacheExpiry = new Duration(TimeUnit.MINUTES, 15);
+
+    @Inject
+    private CarbonServerInfo carbonServerInfo;
+
     @Inject
     private CarbonCachingService cachingService;
 

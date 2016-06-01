@@ -15,9 +15,7 @@
  limitations under the License.
 -->
 
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <groupId>org.wso2.carbon.caching</groupId>
         <artifactId>carbon-caching-tests</artifactId>
@@ -335,21 +333,21 @@
                                     <target xmlns:jacoco="antlib:org.jacoco.ant">
                                         //this task is to provide class/src files locations for jacoco report generation
                                         <taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
-                                            <classpath path="${project.build.directory}"/>
+                                            <classpath path="${project.build.directory}" />
                                         </taskdef>
                                         <jacoco:report>
                                             <executiondata>
-                                                <file file="${project.build.directory}/jacoco.exec"/>
+                                                <file file="${project.build.directory}/jacoco.exec" />
                                             </executiondata>
                                             <structure name="Carbon Core OSGi Tests">
                                                 <classfiles>
-                                                    <fileset dir="../../component/target/classes"/>
+                                                    <fileset dir="../../component/target/classes" />
                                                 </classfiles>
                                                 <sourcefiles encoding="UTF-8">
-                                                    <fileset dir="../../component/src"/>
+                                                    <fileset dir="../../component/src" />
                                                 </sourcefiles>
                                             </structure>
-                                            <html destdir="${project.build.directory}/site/jacoco"/>
+                                            <html destdir="${project.build.directory}/site/jacoco" />
                                         </jacoco:report>
                                     </target>
                                 </configuration>

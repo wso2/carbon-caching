@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~ Copyright (c) 2016, WSO2 Inc. (http://wso2.com) All Rights Reserved.
+  ~ Copyright 2017 WSO2, Inc. (http://wso2.com)
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -14,46 +14,24 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <groupId>org.wso2.carbon.caching</groupId>
-        <artifactId>org.wso2.carbon.caching.parent</artifactId>
+        <artifactId>carbon-caching-tests</artifactId>
         <version>1.1.3-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>wso2carbon-caching</artifactId>
-    <version>1.1.3-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>WSO2 Carbon Caching - Distribution</name>
-    <description>WSO2 Carbon Caching - Distribution</description>
-    <url>http://wso2.org</url>
+    <artifactId>wso2carbon-caching-test</artifactId>
+    <name>WSO2 Carbon Caching - Test - Distribution</name>
 
     <dependencies>
         <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>org.osgi.core</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.wso2.carbon</groupId>
-            <artifactId>org.wso2.carbon.launcher</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.carbon</groupId>
-            <artifactId>org.wso2.carbon.kernel.feature</artifactId>
-            <type>zip</type>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.carbon</groupId>
-            <artifactId>org.wso2.carbon.runtime.feature</artifactId>
-            <type>zip</type>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.carbon.caching</groupId>
-            <artifactId>org.wso2.carbon.caching.feature</artifactId>
-            <version>${carbon.caching.version}</version>
+            <artifactId>org.wso2.carbon.pax.exam.feature</artifactId>
             <type>zip</type>
         </dependency>
     </dependencies>
@@ -66,7 +44,7 @@
                 <inherited>false</inherited>
                 <executions>
                     <execution>
-                        <id>unpack-equinox-executable</id>
+                        <id>1-unpack-p2-agent-distribution</id>
                         <phase>test</phase>
                         <goals>
                             <goal>unpack</goal>
@@ -74,12 +52,11 @@
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>org.eclipse.equinox</groupId>
-                                    <artifactId>org.eclipse.equinox.executable</artifactId>
-                                    <version>3.5.0.v20110530-7P7NFUFFLWUl76mart</version>
+                                    <groupId>org.wso2.carbon.caching</groupId>
+                                    <artifactId>wso2carbon-caching</artifactId>
                                     <type>zip</type>
                                     <overWrite>true</overWrite>
-                                    <outputDirectory>target</outputDirectory>
+                                    <outputDirectory>${project.build.directory}</outputDirectory>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
@@ -100,47 +77,10 @@
                             <targetRepository>file:${basedir}/target/p2-repo</targetRepository>
                             <features>
                                 <feature>
-                                    <id>org.wso2.carbon.kernel.feature</id>
+                                    <id>org.wso2.carbon.pax.exam.feature</id>
                                     <version>${carbon.kernel.version}</version>
-                                </feature>
-                                <feature>
-                                    <id>org.wso2.carbon.runtime.feature</id>
-                                    <version>${carbon.kernel.version}</version>
-                                </feature>
-                                <feature>
-                                    <id>org.wso2.carbon.caching.feature</id>
-                                    <version>${carbon.caching.version}</version>
                                 </feature>
                             </features>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>publishing products</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>publish-product</goal>
-                        </goals>
-                        <configuration>
-                            <productConfigurationFile>${basedir}/carbon.product
-                            </productConfigurationFile>
-                            <executable>
-                                ${basedir}/target/org.eclipse.equinox.executable_3.5.0.v20110530-7P7NFUFFLWUl76mart
-                            </executable>
-                            <repositoryURL>file:${basedir}/target/p2-repo</repositoryURL>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>materialize-product</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>generate-runtime</goal>
-                        </goals>
-                        <configuration>
-                            <productConfigurationFile>${basedir}/carbon.product
-                            </productConfigurationFile>
-                            <repositoryURL>file:${basedir}/target/p2-repo</repositoryURL>
-                            <targetPath>file:${basedir}/target/WSO2Carbon/wso2</targetPath>
-                            <runtime>default</runtime>
                         </configuration>
                     </execution>
                     <execution>
@@ -152,20 +92,12 @@
                         <configuration>
                             <runtime>default</runtime>
                             <repositoryURL>file:${basedir}/target/p2-repo</repositoryURL>
-                            <destination>${basedir}/target/WSO2Carbon/wso2</destination>
+                            <destination>${basedir}/target/wso2carbon-caching-${carbon.caching.version}/wso2</destination>
                             <deleteOldRuntimeFiles>true</deleteOldRuntimeFiles>
                             <features>
                                 <feature>
-                                    <id>org.wso2.carbon.kernel.feature.group</id>
+                                    <id>org.wso2.carbon.pax.exam.feature</id>
                                     <version>${carbon.kernel.version}</version>
-                                </feature>
-                                <feature>
-                                    <id>org.wso2.carbon.runtime.feature.group</id>
-                                    <version>${carbon.kernel.version}</version>
-                                </feature>
-                                <feature>
-                                    <id>org.wso2.carbon.caching.feature.group</id>
-                                    <version>${carbon.caching.version}</version>
                                 </feature>
                             </features>
                         </configuration>
@@ -180,7 +112,7 @@
                         <phase>package</phase>
                         <configuration>
                             <tasks>
-                                <replace dir="target/WSO2Carbon" token="false" value="true">
+                                <replace dir="target/wso2carbon-caching-${carbon.caching.version}/wso2" token="false" value="true">
                                     <include name="**/bundles.info" />
                                 </replace>
                             </tasks>
@@ -198,6 +130,7 @@
                                 <delete dir="target/dependency-maven-plugin-markers" />
                                 <delete dir="target/org.eclipse.equinox.executable-3.5.0.v20110530-7P7NFUFFLWUl76mart" />
                                 <delete dir="target/p2-repo" />
+                                <!-- Figure out a way to delete tmp.* files -->
                                 <delete file="target/tmp" />
                                 <delete dir="target/WSO2Carbon" />
                                 <delete dir="target/antrun" />
@@ -208,26 +141,25 @@
                             <goal>run</goal>
                         </goals>
                     </execution>
-
                 </executions>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <descriptors>
+                        <descriptor>${basedir}/src/assembly/bin.xml</descriptor>
+                    </descriptors>
+                    <finalName>wso2carbon-caching-test-${carbon.caching.version}</finalName>
+                    <appendAssemblyId>false</appendAssemblyId>
+                </configuration>
                 <executions>
                     <execution>
-                        <id>distribution</id>
+                        <id>make-assembly</id>
                         <phase>package</phase>
                         <goals>
                             <goal>single</goal>
                         </goals>
-                        <configuration>
-                            <descriptors>
-                                <descriptor>${basedir}/src/assembly/bin.xml</descriptor>
-                            </descriptors>
-                            <appendAssemblyId>false</appendAssemblyId>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>

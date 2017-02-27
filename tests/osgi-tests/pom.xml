@@ -75,11 +75,6 @@
             <artifactId>org.wso2.carbon.core</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.wso2.carbon</groupId>
-            <artifactId>osgi-test-util</artifactId>
-            <scope>test</scope>
-        </dependency>
 
         <!-- Pax Exam Dependencies-->
         <dependency>
@@ -227,6 +222,19 @@
             <artifactId>snakeyaml</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!--Test Distribution-->
+        <dependency>
+            <groupId>org.wso2.carbon.caching</groupId>
+            <artifactId>wso2carbon-caching-test</artifactId>
+            <type>zip</type>
+        </dependency>
+
+        <!--Pax exam Container Carbon-->
+        <dependency>
+            <groupId>org.wso2.carbon</groupId>
+            <artifactId>org.wso2.carbon.container</artifactId>
+        </dependency>
     </dependencies>
 
     <profiles>
@@ -287,16 +295,22 @@
                                 <org.ops4j.pax.url.mvn.localRepository>${settings.localRepository}
                                 </org.ops4j.pax.url.mvn.localRepository>
                                 <jacoco-agent.destfile>${project.build.directory}/jacoco.exec</jacoco-agent.destfile>
+                                <org.wso2.carbon.test.default.distribution>
+                                    org.wso2.carbon.caching:wso2carbon-caching-test
+                                </org.wso2.carbon.test.default.distribution>
+                                <org.ops4j.pax.logging.DefaultServiceLog.level>ERROR</org.ops4j.pax.logging.DefaultServiceLog.level>
                             </systemPropertyVariables>
                             <suiteXmlFiles>
                                 <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
                             </suiteXmlFiles>
+                            <environmentVariables>
+                                <JAVA_OPTS>${jcoverage.command}</JAVA_OPTS>
+                            </environmentVariables>
                         </configuration>
                     </plugin>
                     <plugin>
                         <groupId>org.jacoco</groupId>
                         <artifactId>jacoco-maven-plugin</artifactId>
-                        <version>${maven.jacoco.plugin.version}</version>
                         <executions>
                             <execution>
                                 <id>default-prepare-agent</id>
@@ -304,9 +318,11 @@
                                     <goal>prepare-agent</goal>
                                 </goals>
                                 <configuration>
+                                    <propertyName>jcoverage.command</propertyName>
                                     <includes>
                                         <include>org.wso2.carbon*</include>
                                     </includes>
+                                    <append>true</append>
                                 </configuration>
                             </execution>
                             <execution>

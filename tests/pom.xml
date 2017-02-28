@@ -29,6 +29,7 @@
     <url>http://wso2.com</url>
 
     <modules>
+        <module>test-distribution</module>
         <module>osgi-tests</module>
     </modules>
 

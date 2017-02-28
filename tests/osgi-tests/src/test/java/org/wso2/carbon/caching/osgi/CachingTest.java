@@ -15,12 +15,14 @@
  */
 package org.wso2.carbon.caching.osgi;
 
+import org.ops4j.pax.exam.ExamFactory;
 import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
 import org.ops4j.pax.exam.spi.reactors.PerClass;
 import org.ops4j.pax.exam.testng.listener.PaxExam;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.wso2.carbon.caching.CarbonCachingService;
+import org.wso2.carbon.container.CarbonContainerFactory;
 import org.wso2.carbon.kernel.utils.CarbonServerInfo;
 
 import java.util.concurrent.TimeUnit;
@@ -40,6 +42,7 @@ import static org.testng.Assert.assertNull;
  */
 @Listeners(PaxExam.class)
 @ExamReactorStrategy(PerClass.class)
+@ExamFactory(CarbonContainerFactory.class)
 public class CachingTest {
     private static final String CACHE_NAME = "foo";
     private static final String KEY = "k";
@@ -67,7 +70,7 @@ public class CachingTest {
     }
 
     private Cache<String, String> getCache(String cacheName) {
-        CachingProvider provider = cachingService.getCachingProvider();
+        CachingProvider provider = cachingService.getCachingProvider(CachingProvider.class.getClassLoader());
         CacheManager cacheManager = provider.getCacheManager();
         Cache<String, String> cache = cacheManager.getCache(cacheName, String.class, String.class);
         if (cache == null) {

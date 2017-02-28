@@ -19,13 +19,13 @@
     <parent>
         <groupId>org.wso2.carbon.caching</groupId>
         <artifactId>org.wso2.carbon.caching.parent</artifactId>
-        <version>1.1.2-SNAPSHOT</version>
+        <version>1.1.2</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>wso2carbon-caching</artifactId>
-    <version>1.1.2-SNAPSHOT</version>
+    <version>1.1.2</version>
     <packaging>pom</packaging>
     <name>WSO2 Carbon Caching - Distribution</name>
     <description>WSO2 Carbon Caching - Distribution</description>

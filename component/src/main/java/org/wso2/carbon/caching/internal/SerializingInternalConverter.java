@@ -33,6 +33,7 @@ import javax.cache.CacheException;
  * @param <T> the type of value to serialize
  */
 class SerializingInternalConverter<T> implements InternalConverter<T> {
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(SerializingInternalConverter.class);
 
     /**
      * The {@link ClassLoader} to use for locating classes to serialize/deserialize.
@@ -127,7 +128,7 @@ class SerializingInternalConverter<T> implements InternalConverter<T> {
                     try {
                         bos.close();
                     } catch (IOException e) {
-                        // eat this up
+                        log.warn("Cannot close ByteArrayOutputStream", e);
                     }
                 }
             }
@@ -154,7 +155,7 @@ class SerializingInternalConverter<T> implements InternalConverter<T> {
                 try {
                     bos.close();
                 } catch (IOException e) {
-                    // eat this up
+                    log.warn("Cannot close ByteArrayOutputStream", e);
                 }
             }
         }
